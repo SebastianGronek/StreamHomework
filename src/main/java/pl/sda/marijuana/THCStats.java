@@ -1,13 +1,10 @@
 package pl.sda.marijuana;
 
 import lombok.RequiredArgsConstructor;
-import pl.sda.marijuana.data.FromJSONSnapshotProvider;
 import pl.sda.marijuana.data.PriceSnapshot;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -69,10 +66,10 @@ public class THCStats {
                 .orElse(null);
     }
 
+    //W tej metodzie odfiltrowuje snapshoty, dla których nie ma wszystkich 3 cen.
+    // Żeby to zrobić, zmieniłem modyfikator dostępu metody existingPricesCount() - nie wiem, czy to dobra praktyka.
     public String findStateWithBestAvgPriceIgnoringSnapshotsWithNull() {
-        return priceSnapshots.stream().filter(priceSnapshot -> priceSnapshot.getLowQualityPrice() != null)
-                .filter(priceSnapshot -> priceSnapshot.getMediumQualityPrice() != null)
-                .filter(priceSnapshot -> priceSnapshot.getHighQualityPrice() != null)
+        return priceSnapshots.stream().filter(priceSnapshot -> priceSnapshot.existingPricesCount()>2)
                 .collect(Collectors
                         .groupingBy(PriceSnapshot::getState, Collectors
                                 .mapping(PriceSnapshot::averagePrice, Collectors.toList())))
@@ -140,21 +137,5 @@ public class THCStats {
                                 .map(PriceSnapshot::getState)
                                 .findFirst()
                                 .get()));
-    }
-
-    public static void main(String[] args) {
-        Path path = Paths.get("src/main/resources/weed.json");
-        FromJSONSnapshotProvider fromJSONSnapshotProvider = new FromJSONSnapshotProvider(path);
-        THCStats thcStats = new THCStats(fromJSONSnapshotProvider.getSnapshots());
-
-        //System.out.println(thcStats.findFiveCheapestHighQualityDeals());
-        //System.out.println(thcStats.findStateWithBestAvgPrice());
-        //System.out.println(thcStats.findBestPriceForAvgWeedByState());
-        //System.out.println(thcStats.findCheapestPlaceToBuyWeedByYear());
-        //System.out.println(thcStats.findCheapestPlaceToBuyWeedByMonthAndYear());
-        Map<String, String> result = thcStats.findCheapestPlaceToBuyWeedByMonthAndYear();
-        System.out.println(result);
-        System.out.println(result.size());
-
     }
 }

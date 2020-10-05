@@ -37,7 +37,7 @@ public class PriceSnapshot {
 
     }
 
-    private long existingPricesCount() {
+    public long existingPricesCount() {
         return Stream.of(
                 highQualityPrice,
                 mediumQualityPrice,
