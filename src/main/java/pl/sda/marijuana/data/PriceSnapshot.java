@@ -1,9 +1,6 @@
 package pl.sda.marijuana.data;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -15,6 +12,8 @@ import java.util.stream.Stream;
 @Setter
 @ToString
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PriceSnapshot {
     private String state;
     private BigDecimal highQualityPrice;
