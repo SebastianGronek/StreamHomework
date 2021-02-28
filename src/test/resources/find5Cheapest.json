@@ -1,0 +1,42 @@
+[
+  {
+    "highQualityPrice": 288.75,
+    "lowQualityPrice": 388.58,
+    "mediumQualityPrice": 260.6,
+    "month": 1,
+    "state": "Alaska",
+    "year": 2014
+  },
+  {
+    "highQualityPrice": 248.78,
+    "lowQualityPrice": 192.92,
+    "mediumQualityPrice": 193.56,
+    "month": 1,
+    "state": "California",
+    "year": 2014
+  },
+  {
+    "highQualityPrice": 243.96,
+    "lowQualityPrice": null,
+    "mediumQualityPrice": 189.35,
+    "month": 1,
+    "state": "California",
+    "year": 2015
+  },
+  {
+    "highQualityPrice": 288.81,
+    "lowQualityPrice": 388.58,
+    "mediumQualityPrice": 254.5,
+    "month": 2,
+    "state": "Alaska",
+    "year": 2014
+  },
+  {
+    "highQualityPrice": 248.2,
+    "lowQualityPrice": 191.94,
+    "mediumQualityPrice": 192.8,
+    "month": 2,
+    "state": "California",
+    "year": 2014
+  }
+  ]

@@ -45,4 +45,22 @@ public class PriceSnapshot {
                 .filter(Objects::nonNull)
                 .count();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PriceSnapshot that = (PriceSnapshot) o;
+        return Objects.equals(state, that.state) &&
+                Objects.equals(highQualityPrice, that.highQualityPrice) &&
+                Objects.equals(mediumQualityPrice, that.mediumQualityPrice) &&
+                Objects.equals(lowQualityPrice, that.lowQualityPrice) &&
+                Objects.equals(month, that.month) &&
+                Objects.equals(year, that.year);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(state, highQualityPrice, mediumQualityPrice, lowQualityPrice, month, year);
+    }
 }
